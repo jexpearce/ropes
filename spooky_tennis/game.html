@@ -1,0 +1,151 @@
+<html>
+  <head>
+    <title>Spooky Tennis</title>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Da" rel="stylesheet">
+  </head>
+
+  <style>
+    body {
+      color: white;
+      text-align: center;
+      background: url(house.jpg);
+      background-size: cover;
+      font-family: 'Baloo Da';
+    }
+
+    h1 {
+      text-decoration: underline;
+    }
+
+    #container {
+      margin: 0 auto;
+      height: 500px;
+      width: 500px;
+      border: 4px solid white;
+      border-bottom: none;
+      background: url(container.jpg) 50% 50%;
+      background-size: cover;
+    }
+
+    #ball {
+      background: white;
+      height: 12px;
+      width: 12px;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    #bat {
+      background: white;
+      height: 10px;
+      width: 100px;
+      position: relative;
+      top: 470px;
+    }
+  </style>
+
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <body>
+    <h1>Spooky Tennis</h1>
+    <p id="scoreboard"></p>
+    <div id="container">
+      <div id="ball"></div>
+      <div id="bat"></div>
+    </div>
+  </body>
+
+  <script>
+
+    // THIS IS JUST TO KEEP TRACK OF WHAT KEYS ARE PRESSED
+    var leftPressed = false;
+    var rightPressed = false;
+    window.addEventListener('keydown', event => {
+      if (event.key === 'ArrowLeft') {
+        leftPressed = true;
+      }
+      if (event.key === 'ArrowRight') {
+        rightPressed = true;
+      }
+    });
+    window.addEventListener('keyup', event => {
+      if (event.key === 'ArrowLeft') {
+        leftPressed = false;
+      }
+      if (event.key === 'ArrowRight') {
+        rightPressed = false;
+      }
+    });
+
+    var updater;
+
+    // VARIABLES THAT IDENTIFY THE OBJECTS
+    var bat = document.getElementById('bat');
+    var ball = document.getElementById('ball');
+    var scoreboard = document.getElementById('scoreboard');
+
+    // VARIABLES THAT DESCRIBE WHERE THE OBJECTS ARE
+    var batX = 0;
+    var ballX = 250;
+    var ballY = 200;
+    var boost = 1;
+    var ballXSpeed = 1;
+    var ballYSpeed = -1.5;
+    var score = 0;
+
+    // THIS IS THE INTERESTING PART :)
+    function update() {
+
+      // If we are pressing the left key and not at the far left side, then go left
+      if (leftPressed && batX > 0) {
+        batX = batX - 2;
+      }
+      // otherwise, if we are pressing the right key and not at the far right side, then go right
+      else if (rightPressed && batX < 400) {
+        batX = batX + 2;
+      }
+      // move the bat to where it should be
+      bat.style.left = batX;
+
+
+      if (ballX > 490 || ballX < 0) {
+        ballXSpeed = -ballXSpeed;
+      }
+      if (ballY < 0) {
+        ballYSpeed = -ballYSpeed;
+      }
+      if (ballY > 470 && ballY < 476 && ballX > batX && ballX < batX + 100) {
+        // bat hit ball!
+        ballYSpeed = -ballYSpeed;
+        boost = boost + 0.1;
+        score = score + 10;
+      }
+      if (ballY > 500) {
+        scoreboard.innerHTML = "GAME OVER! YOU SCORED " + score;
+        clearInterval(updater);
+        return;
+      }
+
+      ballX = ballX + Math.min(5, ballXSpeed * boost);
+      ballY = ballY + Math.min(5, ballYSpeed * boost);
+
+      // move the ball to where it should be
+      ball.style.left = ballX;
+      ball.style.top = ballY;
+
+
+      // update the scoreboard
+      scoreboard.innerHTML = score;
+
+    }
+
+    // THIS MAKES THE LOOP RUN AT ABOUT 120 FPS
+    updater = setInterval(update, 4);
+
+  </script>
+
+
+
+</html>
