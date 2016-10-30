@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+  text-align: center;
+  font-family:"Open Sans";
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 50px;
+}
+
+h1 {
+  border-style: solid;
+  border-width: thin;
+  text-align: center;
+  display: inline;
+  font-size:40px;
+}
+
+
+h2 {
+  margin-top: 50px
+}
+
+nav {
+  float:left;
+  background-color: lightblue;
+  width: 200px;
+}
+
+article {
+  margin-left: 250px;
+}
+
+p {
+  text-align: justify;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+img {
+  vertical-align: middle;
+  margin: 65px;
+}
