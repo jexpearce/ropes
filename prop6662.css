@@ -1,33 +1,53 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 body {
-  text-align: center;
   font-family:"Open Sans";
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.5;
   margin: 50px;
+  margin-top: 10px;
 }
+
 
 h1 {
   border-style: solid;
   border-width: thin;
   text-align: center;
   display: inline;
-  font-size:40px;
+  font-size:43px;
 }
 
 
 h2 {
-  margin-top: 50px
+  text-align: center;
+  margin-top: 35px;
+}
+
+h3 {
+  text-align: center;
+}
+
+header {
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+aside {
+  float:left;
+
 }
 
 nav {
-  float:left;
+  text-align: center;
+  font-size: 18px;
   background-color: lightblue;
   width: 200px;
+  line-height: 40px;
 }
 
 article {
+  border: solid lightblue 3px;
+  padding: 10px;
   margin-left: 250px;
 }
 
@@ -35,10 +55,29 @@ p {
   text-align: justify;
   margin-top: 10px;
   margin-bottom: 10px;
+  font-size:18px;
 }
+
 
 
 img {
   vertical-align: middle;
-  margin: 65px;
+  margin: 20px;
+}
+
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  border: 1px solid black;
+  background: lightblue;
+}
+
+td {
+  border: 1px solid black;
 }
