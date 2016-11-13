@@ -59,7 +59,18 @@
 
   <script>
 
+  function load_js()
+    {
+       var head= document.getElementsByTagName('head')[0];
+       var script= document.createElement('script');
+       script.type= 'text/javascript';
+       script.src= 'source_file.js';
+       head.appendChild(script);
+    }
+
+
     // THIS IS JUST TO KEEP TRACK OF WHAT KEYS ARE PRESSED
+
     var leftPressed = false;
     var rightPressed = false;
     window.addEventListener('keydown', event => {
@@ -125,6 +136,7 @@
       if (ballY > 500) {
         scoreboard.innerHTML = "GAME OVER! YOU SCORED " + score;
         clearInterval(updater);
+        load_js();
         return;
       }
 
