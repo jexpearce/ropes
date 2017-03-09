@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, World! - A-Frame</title>
+    <meta name="description" content="Hello, World! - A-Frame">
+    <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+  </head>
+  <body>
+
+    <audio autoplay loop>
+      <source src="music.mp3" type="audio/mpeg" />
+    </audio>
+
+    <a-scene>
+      <a-entity id="camera" position="20 5 -4" rotation="0 90 0"><a-camera look-controls="false"></a-camera></a-entity>
+      <a-sky color="#CCFFFF"></a-sky>
+      <a-entity ground></a-entity>
+<!-- bottom ones -->
+
+      <a-cylinder position="10 0 -4" radius="0.6" height="8" color="#660000"></a-cylinder>
+      <a-cylinder position="6 0 -4" radius="0.6" height="9" color="#660000"></a-cylinder>
+      <a-cylinder position="2 0 -4" radius="0.6" height="11" color="#660000"></a-cylinder>
+      <a-cylinder position="-2 0 -4" radius="0.6" height="7" color="#660000"></a-cylinder>
+      <a-cylinder position="-6 0 -4" radius="0.6" height="13" color="#660000"></a-cylinder>
+      <a-cylinder position="-10 0 -4" radius="0.6" height="11" color="#660000"></a-cylinder>
+      <a-cylinder position="-14 0 -4" radius="0.6" height="10" color="#660000"></a-cylinder>
+      <a-cylinder position="-18 0 -4" radius="0.6" height="14" color="#660000"></a-cylinder>
+      <a-cylinder position="-22 0 -4" radius="0.6" height="12" color="#660000"></a-cylinder>
+      <a-cylinder position="-26 0 -4" radius="0.6" height="8" color="#660000"></a-cylinder>
+
+      <a-cylinder position="10 13 -4" radius="0.6" height="9" color="#660000"></a-cylinder>
+        <a-cylinder position="6 13 -4" radius="0.6" height="8" color="#660000"></a-cylinder>
+        <a-cylinder position="2 13 -4" radius="0.6" height="6" color="#660000"></a-cylinder>
+        <a-cylinder position="-2 13 -4" radius="0.6" height="10" color="#660000"></a-cylinder>
+        <a-cylinder position="-6 13 -4" radius="0.6" height="4" color="#660000"></a-cylinder>
+        <a-cylinder position="-10 13 -4" radius="0.6" height="6" color="#660000"></a-cylinder>
+        <a-cylinder position="-14 13 -4" radius="0.6" height="7" color="#660000"></a-cylinder>
+        <a-cylinder position="-18 13 -4" radius="0.6" height="3" color="#660000"></a-cylinder>
+        <a-cylinder position="-22 13 -4" radius="0.6" height="7" color="#660000"></a-cylinder>
+        <a-cylinder position="-26 13 -4" radius="0.6" height="9" color="#660000"></a-cylinder>
+    </a-scene>
+  </body>
+
+<script>
+
+var camera = document.getElementById("camera");
+var cameraX = 20;
+var cameraY = 5;
+var falling = 0;
+
+document.addEventListener('keydown', function() {
+  falling = -0.04;
+});
+
+function loop() {
+  camera.setAttribute('position', cameraX + ' ' + cameraY + ' -4');
+  cameraX = cameraX - 0.035;
+  cameraY = cameraY - falling;
+  falling = falling + 0.0008;
+
+  if (cameraX<-28) {
+    alert("You Won");
+    clearInterval(loopId);
+  }
+
+  if (cameraY<-1.5) {
+    alert("You hit the Ground");
+    clearInterval(loopId);
+  }
+
+  if ((cameraX<10.6 && cameraX>9.4) && (cameraY < 4 || cameraY > 8.5)) {
+    alert("You hit the first pillar");
+    clearInterval(loopId);
+  }
+  if ((cameraX<6.6 && cameraX>5.4) && (cameraY < 4.5 || cameraY > 9)) {
+    alert("You hit the second pillar");
+    clearInterval(loopId);
+  }
+  if ((cameraX<2.6 && cameraX>1.4) && (cameraY < 5.5 || cameraY > 10)) {
+    alert("You hit the third pillar");
+    clearInterval(loopId);
+  }
+  if ((cameraX<-1.4 && cameraX>-2.6) && (cameraY < 3.5 || cameraY > 8)) {
+    alert("You hit the fourth pillar");
+    clearInterval(loopId);
+  }
+}
+
+loopId = setInterval(loop, 10);
+
+AFRAME.registerComponent('ground', {
+  init: function () {
+    var objectLoader;
+    var object3D = this.el.object3D;
+    var MODEL_URL = 'https://cdn.aframe.io/link-traversal/models/ground.json';
+    if (this.objectLoader) { return; }
+    objectLoader = this.objectLoader = new THREE.ObjectLoader();
+    objectLoader.crossOrigin = '';
+    objectLoader.load(MODEL_URL, function (obj) {
+      object3D.add(obj);
+    });
+  }
+});
+
+</script>
+
+</html>

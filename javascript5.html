@@ -1,0 +1,209 @@
+<head><title>Jex's Flappy Bird </title></head>
+
+<style>
+
+/*This is the Game Screen;*/
+
+#Game_Screen {
+  background-image:url(Background.jpg);
+  background-size: contain;
+  height:480px;
+  width:700px;
+  margin: 100px auto;
+  border:10px green solid;
+  position: relative;
+  overflow: hidden;
+}
+
+#Bird {
+  height:35px;
+  width:38px;
+  background-image:url(Bird.png);
+  background-size: contain;
+  background-repeat:no-repeat;
+  position:absolute;
+  left: 100px;
+  top: 150px;
+}
+
+#scoreboard {
+  position:absolute;
+  top: 120px;
+  left: 120px;
+}
+
+.Green_Pipe_Top {
+  height:500px;
+  width:39px;
+  background-image:url(top_pipe.png);
+  background-size: contain;
+  background-repeat:no-repeat;
+  position:absolute;
+}
+
+#Green_Pipe_Top_1{
+  left:440px;
+  top:-350px;
+}
+#Green_Pipe_Top_2 {
+  left:590px;
+  top:-350px;
+}
+#Green_Pipe_Top_3 {
+  left:740px;
+  top:-320px;
+}
+#Green_Pipe_Top_4 {
+  left:890px;
+  top:-380px;
+}
+#Green_Pipe_Top_5 {
+  left:1040px;
+  top:-220px;
+}
+
+.Green_Pipe_Bot {
+  height:500px;
+  width:39px;
+  background-image:url(bottom_pipe.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position:absolute;
+}
+
+#Green_Pipe_Bot_1{
+  left:440px;
+  top:280px;
+}
+#Green_Pipe_Bot_2 {
+  left:590px;
+  top:250px;
+}
+#Green_Pipe_Bot_3 {
+  left:740px;
+  top:296px;
+}
+#Green_Pipe_Bot_4 {
+  left:890px;
+  top:240px;
+}
+#Green_Pipe_Bot_5 {
+  left:1040px;
+  top:400px;
+}
+
+
+#Tap_Image {
+  height:150px;
+  width:39px;
+  background-image:url(flappy_bird_tap.jpg);
+  background-size: contain;
+  background-repeat:no-repeat;
+  position:absolute;
+  left:60px;
+  top:300px;
+}
+
+</style>
+
+<body>
+<h1><center>Flappy Jex</center></h1>
+
+<div id="Game_Screen">
+  <!-- this is the main game with the bird etc in -->
+  <div id="Bird"></div>
+  <div id="scoreboard">0</div>
+
+  <div id="Green_Pipe_Top_1" class="Green_Pipe_Top"></div>
+  <div id="Green_Pipe_Top_2" class="Green_Pipe_Top"></div>
+  <div id="Green_Pipe_Top_3" class="Green_Pipe_Top"></div>
+  <div id="Green_Pipe_Top_4" class="Green_Pipe_Top"></div>
+  <div id="Green_Pipe_Top_5" class="Green_Pipe_Top"></div>
+
+  <div id="Green_Pipe_Bot_1" class="Green_Pipe_Bot"></div>
+  <div id="Green_Pipe_Bot_2" class="Green_Pipe_Bot"></div>
+  <div id="Green_Pipe_Bot_3" class="Green_Pipe_Bot"></div>
+  <div id="Green_Pipe_Bot_4" class="Green_Pipe_Bot"></div>
+  <div id="Green_Pipe_Bot_5" class="Green_Pipe_Bot"></div>
+
+  <!-- <div id="Tap_Image"></div> -->
+
+
+
+</div>
+
+<!-- this is the java script -->
+<script>
+var bird = document.getElementById("Bird");
+var bird_top = 150;
+var bird_speed = 0;
+
+var PipeTops = document.getElementsByClassName("Green_Pipe_Top");
+var PipeBots = document.getElementsByClassName("Green_Pipe_Bot");
+
+var scoreboard = document.getElementById("scoreboard");
+
+var score = 0;
+
+document.addEventListener('keydown', function() {
+  bird_speed = -2.6;
+});
+
+function gameloop(){
+
+  bird.style.top = bird_top;
+  if(bird_top<454){
+    bird_top = bird_top + bird_speed;
+  }
+  bird_speed = bird_speed + 0.06;
+
+  // for each of the top pipes
+  for (var i = 0; i < PipeTops.length; i++) {
+    // Move top pipe to the left
+    PipeTops[i].style.left = PipeTops[i].offsetLeft - 1;
+
+    // If top pipe goes off the left put it back on the right
+    if (PipeTops[i].offsetLeft < -40) {
+      PipeTops[i].style.left = 700;
+      score = score + 1;
+      scoreboard.innerHTML= score;
+
+    }
+
+    // If the pipe left is 130 AND if the bottom of the pipe is lower than the bird, blurgh
+    if (PipeTops[i].offsetLeft <= 130 && PipeTops[i].offsetLeft > 80 && PipeTops[i].offsetTop + 500 > bird_top) {
+      // blurgh
+      clearTimeout(loop);
+      location.reload();
+    }
+
+  }
+
+  // for each of the bottom pipes
+  for (var i = 0; i < PipeBots.length; i++) {
+    // Move bottom pipe to the left
+    PipeBots[i].style.left = PipeBots[i].offsetLeft - 1;
+
+    // If bottom pipe goes off the left put it back on the right
+    if (PipeBots[i].offsetLeft < -40) {
+      PipeBots[i].style.left = 700;
+    }
+
+    // If the pipe left is 130 AND if the top of the pipe is higher than the bird, blurgh
+    if (PipeBots[i].offsetLeft <= 130 && PipeBots[i].offsetLeft > 80 && PipeBots[i].offsetTop < bird_top + 25) {
+      // blurgh
+      clearTimeout(loop);
+      location.reload();
+    }
+
+  }
+
+
+}
+
+
+
+var loop = setInterval(gameloop,10);
+}
+
+</script>

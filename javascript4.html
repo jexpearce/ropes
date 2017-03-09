@@ -1,0 +1,229 @@
+<head><title>Jex's Flappy Bird </title></head>
+
+<style>
+
+/*This is the Game Screen;*/
+
+#Game_Screen {
+  background-image:url(Background.jpg);
+  background-size: contain;
+  height:480px;
+  width:700px;
+  margin: 100px auto;
+  border:10px green solid;
+  position: relative;
+  overflow: hidden;
+}
+
+#Bird {
+  height:35px;
+  width:38px;
+  background-image:url(Bird.png);
+  background-size: contain;
+  background-repeat:no-repeat;
+  position:absolute;
+  left: 100px;
+  top: 150px;
+}
+
+.Green_Pipe_Top {
+  height:500px;
+  width:39px;
+  background-image:url(top_pipe.png);
+  background-size: contain;
+  background-repeat:no-repeat;
+  position:absolute;
+}
+
+#Green_Pipe_Top_1{
+  left:440px;
+  top:-320px;
+}
+#Green_Pipe_Top_2 {
+  left:590px;
+  top:-350px;
+}
+#Green_Pipe_Top_3 {
+  left:740px;
+  top:-300px;
+}
+#Green_Pipe_Top_4 {
+  left:890px;
+  top:-280px;
+}
+#Green_Pipe_Top_5 {
+  left:1040px;
+  top:-200px;
+}
+
+.Green_Pipe_Bot {
+  height:500px;
+  width:39px;
+  background-image:url(bottom_pipe.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position:absolute;
+}
+
+#Green_Pipe_Bot_1{
+  left:440px;
+  top:280px;
+}
+#Green_Pipe_Bot_2 {
+  left:590px;
+  top:230px;
+}
+#Green_Pipe_Bot_3 {
+  left:740px;
+  top:296px;
+}
+#Green_Pipe_Bot_4 {
+  left:890px;
+  top:300px;
+
+}
+#Green_Pipe_Bot_5 {
+  left:1040px;
+  top:400px;
+}
+
+
+#Tap_Image {
+  height:150px;
+  width:39px;
+  background-image:url(flappy_bird_tap.jpg);
+  background-size: contain;
+  background-repeat:no-repeat;
+  position:absolute;
+  left:60px;
+  top:300px;
+}
+
+</style>
+
+<body>
+<h1><center>Flappy Jex</center></h1>
+
+<div id="Game_Screen">
+  <!-- this is the main game with the bird etc in -->
+  <div id="Bird"></div>
+
+  <div id="Green_Pipe_Top_1" class="Green_Pipe_Top"></div>
+  <div id="Green_Pipe_Top_2" class="Green_Pipe_Top"></div>
+  <div id="Green_Pipe_Top_3" class="Green_Pipe_Top"></div>
+  <div id="Green_Pipe_Top_4" class="Green_Pipe_Top"></div>
+  <div id="Green_Pipe_Top_5" class="Green_Pipe_Top"></div>
+
+  <div id="Green_Pipe_Bot_1" class="Green_Pipe_Bot"></div>
+  <div id="Green_Pipe_Bot_2" class="Green_Pipe_Bot"></div>
+  <div id="Green_Pipe_Bot_3" class="Green_Pipe_Bot"></div>
+  <div id="Green_Pipe_Bot_4" class="Green_Pipe_Bot"></div>
+  <div id="Green_Pipe_Bot_5" class="Green_Pipe_Bot"></div>
+
+  <div id="Tap_Image"></div>
+
+
+
+</div>
+
+<!-- this is the java script -->
+<script>
+var bird = document.getElementById("Bird");
+var bird_top = 150;
+var bird_speed = 0;
+
+var PipeTop1 = document.getElementById("Green_Pipe_Top_1");
+var PipeTop1Left = 440;
+var PipeTop2 = document.getElementById("Green_Pipe_Top_2");
+var PipeTop2Left = 590;
+var PipeTop3 = document.getElementById("Green_Pipe_Top_3");
+var PipeTop3Left = 740;
+var PipeTop4 = document.getElementById("Green_Pipe_Top_4");
+var PipeTop4Left = 890;
+var PipeTop5 = document.getElementById("Green_Pipe_Top_5");
+var PipeTop5Left = 1040;
+
+
+var PipeBot1 = document.getElementById("Green_Pipe_Bot_1");
+var PipeBot1Left = 440;
+var PipeBot2 = document.getElementById("Green_Pipe_Bot_2");
+var PipeBot2Left = 590;
+var PipeBot3 = document.getElementById("Green_Pipe_Bot_3");
+var PipeBot3Left = 740;
+var PipeBot4 = document.getElementById("Green_Pipe_Bot_4");
+var PipeBot4Left = 890;
+var PipeBot5 = document.getElementById("Green_Pipe_Bot_5");
+var PipeBot5Left = 1040;
+
+
+document.addEventListener('keydown', function() {
+  bird_speed = -2.6;
+});
+
+function gameloop(){
+  bird.style.top = bird_top;
+
+  if(bird_top<454){
+    bird_top = bird_top + bird_speed;
+  }
+  bird_speed = bird_speed + 0.06;
+
+  PipeTop1.style.left= PipeTop1Left;
+    PipeTop1Left = PipeTop1Left - 1;
+  if (PipeTop1Left < -40) {
+    PipeTop1Left = 700;
+  }
+  PipeTop2.style.left= PipeTop2Left;
+    PipeTop2Left = PipeTop2Left - 1;
+  if (PipeTop2Left < -40) {
+    PipeTop2Left = 700;
+  }
+  PipeTop3.style.left= PipeTop3Left;
+    PipeTop3Left = PipeTop3Left - 1;
+  if (PipeTop3Left < -40) {
+    PipeTop3Left = 700;
+  }
+  PipeTop4.style.left= PipeTop4Left;
+    PipeTop4Left = PipeTop4Left - 1;
+  if (PipeTop4Left < -40) {
+    PipeTop4Left = 700;
+  }
+  PipeTop5.style.left= PipeTop5Left;
+    PipeTop5Left = PipeTop5Left - 1;
+  if (PipeTop5Left < -40) {
+    PipeTop5Left = 700;
+  }
+
+  PipeBot1.style.left= PipeBot1Left;
+    PipeBot1Left = PipeBot1Left - 1;
+  if (PipeBot1Left < - 40) {
+    PipeBot1Left = 700;
+  }
+  PipeBot2.style.left= PipeBot2Left;
+    PipeBot2Left = PipeBot2Left - 1;
+  if (PipeBot2Left < -40) {
+    PipeBot2Left = 700;
+  }
+  PipeBot3.style.left= PipeBot3Left;
+    PipeBot3Left = PipeBot3Left - 1;
+  if (PipeBot3Left < -40) {
+    PipeBot3Left = 700;
+  }
+  PipeBot4.style.left= PipeBot4Left;
+    PipeBot4Left = PipeBot4Left -1;
+  if (PipeBot4Left < -40)  {
+    PipeBot4Left = 700;
+  }
+  PipeBot5.style.left= PipeBot5Left;
+    PipeBot5Left = PipeBot5Left -1;
+  if (PipeBot5Left < -40)  {
+    PipeBot5Left = 700;
+  }
+}
+
+
+
+setInterval(gameloop,10);
+
+
+</script>
