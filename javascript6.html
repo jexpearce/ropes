@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Hello, World! - A-Frame</title>
-    <meta name="description" content="Hello, World! - A-Frame">
+    <title>Magma Bird</title>
     <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
   </head>
   <body>
@@ -12,12 +10,12 @@
       <source src="music.mp3" type="audio/mpeg" />
     </audio>
 
-    <a-scene>
-      <a-entity id="camera" position="20 5 -4" rotation="0 90 0"><a-camera look-controls="false"></a-camera></a-entity>
+      <a-scene fog="type: linear; far: 31; near: 0">
+      <a-entity id="camera" position="20 5 -4" rotation="0 90 0"><a-camera look-controls="false" wasd-controls-enabled="true"></a-camera></a-entity>
       <a-sky color="#CCFFFF"></a-sky>
-      <a-entity ground></a-entity>
-<!-- bottom ones -->
+      <a-entity ground position="-14 0 0"></a-entity>
 
+<!-- bottom ones -->
       <a-cylinder position="10 0 -4" radius="0.6" height="8" color="#660000"></a-cylinder>
       <a-cylinder position="6 0 -4" radius="0.6" height="9" color="#660000"></a-cylinder>
       <a-cylinder position="2 0 -4" radius="0.6" height="11" color="#660000"></a-cylinder>
@@ -54,36 +52,60 @@ document.addEventListener('keydown', function() {
 });
 
 function loop() {
-  camera.setAttribute('position', cameraX + ' ' + cameraY + ' -4');
+  camera.setAttribute('position', cameraX + ' ' + (cameraY - 1.5) + ' -4');
   cameraX = cameraX - 0.035;
   cameraY = cameraY - falling;
   falling = falling + 0.0008;
 
-  if (cameraX<-28) {
-    alert("You Won");
+  if (cameraX<-27) {
+    location.reload();
     clearInterval(loopId);
   }
 
-  if (cameraY<-1.5) {
+  if (cameraY<0) {
     alert("You hit the Ground");
     clearInterval(loopId);
   }
 
   if ((cameraX<10.6 && cameraX>9.4) && (cameraY < 4 || cameraY > 8.5)) {
-    alert("You hit the first pillar");
     clearInterval(loopId);
+    location.reload();
   }
   if ((cameraX<6.6 && cameraX>5.4) && (cameraY < 4.5 || cameraY > 9)) {
-    alert("You hit the second pillar");
     clearInterval(loopId);
+    location.reload();
   }
   if ((cameraX<2.6 && cameraX>1.4) && (cameraY < 5.5 || cameraY > 10)) {
-    alert("You hit the third pillar");
     clearInterval(loopId);
+    location.reload();
   }
   if ((cameraX<-1.4 && cameraX>-2.6) && (cameraY < 3.5 || cameraY > 8)) {
-    alert("You hit the fourth pillar");
     clearInterval(loopId);
+    location.reload();
+  }
+  if ((cameraX<-5.4 && cameraX>-6.6) && (cameraY <6.5 || cameraY > 11)) {
+    clearInterval(loopId);
+    location.reload();
+  }
+  if ((cameraX<-9.4 && cameraX>-10.6) && (cameraY <5.5 || cameraY > 10)) {
+    clearInterval(loopId);
+    location.reload();
+  }
+  if ((cameraX<-13.4 && cameraX>-14.6) && (cameraY <5 || cameraY >9.5 )) {
+    clearInterval(loopId);
+    location.reload();
+  }
+  if ((cameraX<-17.4 && cameraX>-18.6) && (cameraY <7 || cameraY >11.5 )) {
+    clearInterval(loopId);
+    location.reload();
+  }
+  if ((cameraX<-21.4 && cameraX>-22.6) && (cameraY <6 || cameraY >9.5 )) {
+    clearInterval(loopId);
+    location.reload();
+  }
+  if ((cameraX<-25.4 && cameraX>-26.6) && (cameraY <4 || cameraY >8.5 )) {
+    clearInterval(loopId);
+    location.reload();
   }
 }
 

@@ -92,17 +92,12 @@
   top:400px;
 }
 
+#scoreboard{
+font-family: "comic sans ms"
 
-#Tap_Image {
-  height:150px;
-  width:39px;
-  background-image:url(flappy_bird_tap.jpg);
-  background-size: contain;
-  background-repeat:no-repeat;
-  position:absolute;
-  left:60px;
-  top:300px;
 }
+
+
 
 </style>
 
@@ -145,8 +140,9 @@ var scoreboard = document.getElementById("scoreboard");
 
 var score = 0;
 
+// key press makes bird go up//
 document.addEventListener('keydown', function() {
-  bird_speed = -2.6;
+  bird_speed = -3.6;
 });
 
 function gameloop(){
@@ -155,7 +151,7 @@ function gameloop(){
   if(bird_top<454){
     bird_top = bird_top + bird_speed;
   }
-  bird_speed = bird_speed + 0.06;
+  bird_speed = bird_speed + 1;
 
   // for each of the top pipes
   for (var i = 0; i < PipeTops.length; i++) {
@@ -167,7 +163,6 @@ function gameloop(){
       PipeTops[i].style.left = 700;
       score = score + 1;
       scoreboard.innerHTML= score;
-
     }
 
     // If the pipe left is 130 AND if the bottom of the pipe is lower than the bird, blurgh
@@ -176,7 +171,6 @@ function gameloop(){
       clearTimeout(loop);
       location.reload();
     }
-
   }
 
   // for each of the bottom pipes
@@ -195,15 +189,13 @@ function gameloop(){
       clearTimeout(loop);
       location.reload();
     }
-
   }
 
-
 }
 
 
+// start the game loop; run it every 10 ms
+var loop = setInterval(gameloop, 50);
 
-var loop = setInterval(gameloop,10);
-}
 
 </script>
