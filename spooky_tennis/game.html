@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Sp00ky Tennis</title>
+    <title>Spooky Tennis</title>
     <link href="https://fonts.googleapis.com/css?family=Baloo+Da" rel="stylesheet">
   </head>
 
@@ -42,6 +42,32 @@
       position: relative;
       top: 470px;
     }
+
+    #startbutton{
+    width: 300px;
+    height: 60px;
+    position: absolute;
+    top: 280px;
+    right: 850px;
+    justify-content: center;
+    border:2px solid #3333ff;
+    border-radius: 20px;
+    background-color: #e6e6ff;
+    background-color:#FFFF;
+    font-family: 'Baloo Da';
+    font-size: 140px;
+    
+}
+
+#startbutton > p{
+    font-size: 140px;
+    position: absolute;
+    top: -30px;
+    right: 70px;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-color: #FFB740;
+    -webkit-text-stroke-width: 2.5px;
+}
   </style>
 
   <audio autoplay loop>
@@ -55,6 +81,10 @@
       <div id="ball"></div>
       <div id="bat"></div>
     </div>
+
+    <div class = "startbutton">
+      <p>Use the Arrow Keys to move around. Press the Space button to start.</p>
+  </div>
   </body>
 
   <script>
@@ -65,9 +95,11 @@
     window.addEventListener('keydown', event => {
       if (event.key === 'ArrowLeft') {
         leftPressed = true;
+        
       }
       if (event.key === 'ArrowRight') {
         rightPressed = true;
+        
       }
     });
     window.addEventListener('keyup', event => {
@@ -119,7 +151,7 @@
       if (ballY > 470 && ballY < 476 && ballX > batX && ballX < batX + 100) {
         // bat hit ball!
         ballYSpeed = -ballYSpeed;
-        boost = boost + 0.1;
+        boost = boost + 0.09;
         score = score + 10;
       }
       if (ballY > 500) {
@@ -141,8 +173,13 @@
 
     }
 
-    // THIS MAKES THE LOOP RUN AT ABOUT 120 FPS
+    // THIS MAKES THE LOOP RUN AT ABOUT 240 FPS
+    document.addEventListener('keyup', event => {
+  if (event.code === 'Space') {
     updater = setInterval(update, 4);
+  }
+})
+   
 
   </script>
 
