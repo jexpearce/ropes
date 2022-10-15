@@ -13,9 +13,7 @@
       font-family: 'Baloo Da';
     }
 
-    h1 {
-      text-decoration: underline;
-    }
+    
 
     #container {
       margin: 0 auto;
@@ -43,12 +41,12 @@
       top: 470px;
     }
 
-    #startbutton{
-    width: 300px;
-    height: 60px;
+    .startbutton{
+    width: 500px;
+    height: 80px;
     position: absolute;
     top: 280px;
-    right: 850px;
+    right: 710px;
     justify-content: center;
     border:2px solid #3333ff;
     border-radius: 20px;
@@ -59,13 +57,40 @@
     
 }
 
-#startbutton > p{
-    font-size: 140px;
+.startbutton > p{
+    font-size: 25px;
     position: absolute;
     top: -30px;
-    right: 70px;
+    right: 20px;
     -webkit-text-fill-color: transparent;
-    -webkit-text-stroke-color: #FFB740;
+    -webkit-text-stroke-color: #808080;
+    -webkit-text-stroke-width: 2.5px;
+}
+
+.retry{
+    width: 380px;
+    height: 40px;
+    position: absolute;
+    top: 300px;
+    right: 770px;
+    justify-content: center;
+    border:2px solid #3333ff;
+    border-radius: 20px;
+    background-color: #e6e6ff;
+    background-color:#FFFF;
+    font-family: 'Baloo Da';
+    font-size: 140px;
+    display: none;
+    
+}
+
+.retry > p{
+    font-size: 25px;
+    position: absolute;
+    top: -30px;
+    right: 20px;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-color: #808080;
     -webkit-text-stroke-width: 2.5px;
 }
   </style>
@@ -85,9 +110,17 @@
     <div class = "startbutton">
       <p>Use the Arrow Keys to move around. Press the Space button to start.</p>
   </div>
+
+  <div class = "retry">
+    <p>Game Over! Click here to retry</p>
+</div>
+
   </body>
 
   <script>
+
+let startbutton = document.getElementsByClassName("startbutton")[0];
+let retry = document.getElementsByClassName("retry")[0];
 
     // THIS IS JUST TO KEEP TRACK OF WHAT KEYS ARE PRESSED
     var leftPressed = false;
@@ -155,10 +188,21 @@
         score = score + 10;
       }
       if (ballY > 500) {
-        scoreboard.innerHTML = "GAME OVER! YOU SCORED " + score;
+        if(score > 50 && score < 100){
+        scoreboard.innerHTML = "Well Done! You scored: " + score;
+        }
+        if(score < 50){
+        scoreboard.innerHTML = "At least you tried... Your score is: " + score;
+        }
+        if(score > 100){
+        scoreboard.innerHTML = "Wow Amazing! Your score is: " + score;
+        }
         clearInterval(updater);
+        retry.style = "display: block";
         return;
       }
+
+      retry.onclick = reload;
 
       ballX = ballX + Math.min(5, ballXSpeed * boost);
       ballY = ballY + Math.min(5, ballYSpeed * boost);
@@ -173,10 +217,17 @@
 
     }
 
+    function reload(){
+  window.location.reload();
+}
+
     // THIS MAKES THE LOOP RUN AT ABOUT 240 FPS
     document.addEventListener('keyup', event => {
+
   if (event.code === 'Space') {
+    
     updater = setInterval(update, 4);
+    startbutton.style = "display: none";
   }
 })
    
