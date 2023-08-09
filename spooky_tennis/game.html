@@ -2,6 +2,9 @@
   <head>
     <title>Spooky Tennis</title>
     <link href="https://fonts.googleapis.com/css?family=Baloo+Da" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jolly+Lodger&display=swap" rel="stylesheet">
   </head>
 
   <style>
@@ -10,10 +13,14 @@
       text-align: center;
       background: url(house.jpg);
       background-size: cover;
-      font-family: 'Baloo Da';
+      font-size: 20px;
+      font-family: 'Jolly Lodger', cursive;
+      padding-bottom: 20vh;
     }
+    h1 {
+  font-size: 60px;
+}
 
-    
 
     #container {
       margin: 0 auto;
@@ -43,55 +50,80 @@
 
     .startbutton{
     width: 500px;
-    height: 80px;
+    max-width: 500px;
+    height: 100px;
     position: absolute;
-    top: 280px;
-    right: 710px;
+    top: 40%;
+    right: 32.5%;
     justify-content: center;
     border:2px solid #3333ff;
     border-radius: 20px;
     background-color: #e6e6ff;
     background-color:#FFFF;
-    font-family: 'Baloo Da';
-    font-size: 140px;
+    font-family: 'Jolly Lodger', cursive;
+    font-size: 7vw;
     
 }
 
 .startbutton > p{
-    font-size: 25px;
+    font-size: 2.2vw;
     position: absolute;
-    top: -30px;
-    right: 20px;
+    top: -15%;
+    right: 5%;
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke-color: #808080;
-    -webkit-text-stroke-width: 2.5px;
+    -webkit-text-stroke-width: 0.1vw;
+}
+/* Add more media queries as needed for different screen sizes */
+@media (max-width: 768px) {
+    .startbutton {
+        font-size: 10vw;
+    }
+
+    .startbutton > p {
+        font-size: 3vw;
+    }
 }
 
+
 .retry{
-    width: 380px;
-    height: 40px;
+    width: 80%;
+    max-width: 380px;
+    height: 6%;
     position: absolute;
-    top: 300px;
-    right: 770px;
+    top: 45%;
+    right: 37%;
     justify-content: center;
     border:2px solid #3333ff;
     border-radius: 20px;
     background-color: #e6e6ff;
     background-color:#FFFF;
-    font-family: 'Baloo Da';
-    font-size: 140px;
+    font-family: 'Jolly Lodger', cursive;
+    font-size: 4vw;
     display: none;
     
 }
 
 .retry > p{
-    font-size: 25px;
+    font-size: 2.4vw;
     position: absolute;
-    top: -30px;
-    right: 20px;
+    top: -78%;
+    right: 10%;
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke-color: #808080;
-    -webkit-text-stroke-width: 2.5px;
+    -webkit-text-stroke-width: 0.1vw;
+}
+@media (max-width: 768px) {
+    .retry {
+        font-size: 6vw;
+    }
+
+    .retry > p {
+        font-size: 2vw;
+    }
+}
+.retry{
+    cursor: pointer;
 }
   </style>
 
@@ -108,7 +140,7 @@
     </div>
 
     <div class = "startbutton">
-      <p>Use the Arrow Keys to move around. Press the Space button to start.</p>
+      <p>Use the Arrow Keys to move around. Press the Space button to start!</p>
   </div>
 
   <div class = "retry">
