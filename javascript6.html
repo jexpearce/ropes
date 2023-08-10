@@ -11,7 +11,7 @@
       <a-entity id="camera" position="20 5 -4" rotation="0 90 0"
         ><a-camera look-controls="false" wasd-controls-enabled="true"></a-camera
       ></a-entity>
-      <a-sky color="#CCFFFF"></a-sky>
+      <a-sky color="green" solid;></a-sky>
       <a-entity ground position="-14 0 0"></a-entity>
 
       <!-- bottom ones -->
@@ -281,8 +281,7 @@
       init: function () {
         var objectLoader;
         var object3D = this.el.object3D;
-        var MODEL_URL =
-          "https://cdn.aframe.io/link-traversal/models/ground.json";
+        var MODEL_URL = "ground.json";
         if (this.objectLoader) {
           return;
         }
