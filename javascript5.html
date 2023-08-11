@@ -1,5 +1,11 @@
 <head>
   <title>Jex's Flappy Bird</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jolly+Lodger&family=League+Spartan:wght@500;600&display=swap"
+    rel="stylesheet"
+  />
 </head>
 
 <style>
@@ -8,8 +14,8 @@
   #Game_Screen {
     background-image: url(Background.jpg);
     background-size: contain;
-    height: 480px;
-    width: 700px;
+    height: 530px;
+    width: 800px;
     margin: 100px auto;
     border: 10px green solid;
     position: relative;
@@ -29,8 +35,10 @@
 
   #scoreboard {
     position: absolute;
-    top: 120px;
-    left: 120px;
+    top: 3vh;
+    left: 3vh;
+    font-family: "Jolly Lodger", cursive;
+    font-family: "League Spartan", sans-serif;
   }
 
   .Green_Pipe_Top {
@@ -93,23 +101,40 @@
     top: 400px;
   }
 
-  #scoreboard {
-    font-family: "comic sans ms";
-  }
-
-  .birdstartbutton {
+  #birdstartbutton {
     position: absolute;
     font-family: "comic sans ms";
     border: 8px;
     background: #ffff;
     border-radius: 10px;
     top: 60%;
+    left: 10%;
+  }
+
+  h1 {
+    margin-top: -5%;
+    right: 37%;
+    position: absolute;
+    font-size: 7vh;
+    font-family: "Jolly Lodger", cursive;
+    font-family: "League Spartan", sans-serif;
+    border: 10px;
+    background: #ffff;
+    border-radius: 10px;
   }
 </style>
 
 <body>
-  <h1><center>Flappy Jex</center></h1>
-  <p style="background-image: url('forest.jpg')"></p>
+  <h1><center>Flappy Bird Replica</center></h1>
+
+  <style>
+    body {
+      background-image: url("flappybackground.jpg");
+      background-size: cover;
+      background-position: bottom;
+    }
+  </style>
+
   <div id="Game_Screen">
     <!-- this is the main game with the bird etc in -->
     <div id="Bird"></div>
@@ -127,7 +152,7 @@
     <div id="Green_Pipe_Bot_4" class="Green_Pipe_Bot"></div>
     <div id="Green_Pipe_Bot_5" class="Green_Pipe_Bot"></div>
 
-    <div class="birdstartbutton">
+    <div id="birdstartbutton">
       <p>Press the Space button to start!</p>
     </div>
 
@@ -154,8 +179,11 @@
 
     function gameloop() {
       bird.style.top = bird_top;
-      if (bird_top < 454) {
+      if (bird_top < 514) {
         bird_top = bird_top + bird_speed;
+      } else {
+        clearTimeout(loop);
+        location.reload();
       }
       bird_speed = bird_speed + 0.3;
 
@@ -211,7 +239,11 @@
     document.addEventListener("keyup", (event) => {
       if (event.code === "Space" && loop == null) {
         loop = setInterval(gameloop, 16);
-        birdstartbutton.style.display = "none";
+
+        var birdstartbutton = document.getElementById("birdstartbutton");
+        if (birdstartbutton) {
+          birdstartbutton.style.display = "none";
+        }
       }
     });
   </script>
