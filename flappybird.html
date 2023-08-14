@@ -175,7 +175,10 @@
 
     document.addEventListener("touchstart", function (event) {
       // Create a new KeyboardEvent with type 'keydown' and keyCode for spacebar (32)
-      var spaceEvent = new KeyboardEvent("keydown", { keyCode: 32 });
+      var spaceEvent = new KeyboardEvent("keydown", {
+        keyCode: 32,
+        code: "Space",
+      });
 
       // Dispatch the created event
       document.dispatchEvent(spaceEvent);
