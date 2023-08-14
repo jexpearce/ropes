@@ -248,7 +248,7 @@
 
     //var loop = setInterval(gameloop, 16)
     var loop = null;
-    document.addEventListener("keyup", (event) => {
+    document.addEventListener("keydown", (event) => {
       if (event.code === "Space" && loop == null) {
         loop = setInterval(gameloop, 16);
 
