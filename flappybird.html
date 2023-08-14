@@ -200,6 +200,7 @@
     var score = 0;
 
     document.addEventListener("touchstart", function (event) {
+      event.preventDefault();
       // Create a new KeyboardEvent with type 'keydown' and keyCode for spacebar (32)
       var spaceEvent = new KeyboardEvent("keydown", {
         keyCode: 32,
@@ -274,14 +275,27 @@
 
     //var loop = setInterval(gameloop, 16)
     var loop = null;
+    var preventDefaultScroll = false;
     document.addEventListener("keydown", (event) => {
       if (event.code === "Space" && loop == null) {
         loop = setInterval(gameloop, 16);
+        preventDefaultScroll = true;
+        event.preventDefault();
 
         var birdstartbutton = document.getElementById("birdstartbutton");
         if (birdstartbutton) {
           birdstartbutton.style.display = "none";
         }
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      preventDefaultScroll = true;
+      event.preventDefault();
+    });
+
+    document.addEventListener("touchmove", (event) => {
+      if (preventDefaultScroll) {
+        event.preventDefault();
       }
     });
   </script>
