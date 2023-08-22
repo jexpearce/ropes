@@ -121,8 +121,7 @@
     text-align: center;
     align-items: center;
     font-size: 7vh;
-    font-family: "Jolly Lodger", cursive;
-    font-family: "League Spartan", sans-serif;
+    font-family: "comic sans ms";
     color: bisque;
   }
 
@@ -149,6 +148,29 @@
       top: 6%;
     }
   }
+  #landscapeButton {
+    width: 80%;
+    max-width: 1100px;
+    height: 70px;
+    margin: 100px auto;
+    justify-content: center;
+    border: 2px solid #3333ff;
+    border-radius: 20px;
+    background-color: #e6e6ff;
+    background-color: #ffff;
+    font-family: "comic sans ms";
+  }
+
+  #landscapeButton > p {
+    font-size: 1.6vh;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+    -webkit-text-stroke-color: #67ce73;
+    -webkit-text-stroke-width: 0.3vw;
+  }
 </style>
 
 <body>
@@ -163,6 +185,10 @@
       background-position: bottom;
     }
   </style>
+
+  <div id="landscapeButton">
+    <p>Make sure you are not in low-battery mode!</p>
+  </div>
 
   <div id="Game_Screen">
     <!-- this is the main game with the bird etc in -->
@@ -300,5 +326,15 @@
         event.preventDefault();
       }
     });
+    function checkOrientation() {
+      if (window.innerWidth < window.innerHeight) {
+        document.getElementById("landscapeButton").style.display = "block";
+      } else {
+        document.getElementById("landscapeButton").style.display = "none";
+      }
+    }
+
+    window.addEventListener("resize", checkOrientation);
+    checkOrientation();
   </script>
 </body>

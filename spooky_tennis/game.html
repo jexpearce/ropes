@@ -100,6 +100,27 @@
         -webkit-text-stroke-width: 0.17vw;
       }
     }
+    #landscapeButton {
+      width: 80%;
+      max-width: 1000px;
+      height: 70px;
+      margin: 100px auto;
+      justify-content: center;
+      border: 2px solid #3333ff;
+      border-radius: 20px;
+      background-color: #e6e6ff;
+      background-color: #ffff;
+      font-family: "Jolly Lodger", cursive;
+    }
+
+    #landscapeButton > p {
+      -webkit-text-fill-color: transparent;
+      font-size: 2.4vh;
+      margin: auto;
+      margin-top: 2%;
+      -webkit-text-stroke-color: #808080;
+      -webkit-text-stroke-width: 0.1vw;
+    }
   </style>
 
   <audio autoplay loop>
@@ -114,13 +135,14 @@
       <div id="bat"></div>
 
       <div class="startbutton">
-        <p>
-          Use the Arrow Keys to move around. Press the Space button to start!
-        </p>
+        <p>Use the Arrow Keys to move around. Tap or press Space to start!</p>
       </div>
       <div class="retry">
         <p>Game Over! Click here to retry</p>
       </div>
+    </div>
+    <div id="landscapeButton">
+      <p>Rotate to landscape orientation to start the game!</p>
     </div>
   </body>
 
@@ -230,5 +252,16 @@
         gameStarted = true;
       }
     });
+
+    function checkOrientation() {
+      if (window.innerWidth < window.innerHeight) {
+        document.getElementById("landscapeButton").style.display = "block";
+      } else {
+        document.getElementById("landscapeButton").style.display = "none";
+      }
+    }
+
+    window.addEventListener("resize", checkOrientation);
+    checkOrientation();
   </script>
 </html>
