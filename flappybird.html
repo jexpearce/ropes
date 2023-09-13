@@ -316,6 +316,14 @@
         }
       }
     });
+    document.addEventListener(
+      "touchstart",
+      function (event) {
+        event.preventDefault();
+      },
+      { passive: false }
+    );
+
     document.addEventListener("keydown", (event) => {
       preventDefaultScroll = true;
       event.preventDefault();
